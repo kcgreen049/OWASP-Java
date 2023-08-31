@@ -9,7 +9,7 @@ jobs:
         uses: snyk/actions/maven-3-jdk-20@master
       - run:
           # Run a SAST scan using a supprted tool, Snyk as an example
-          ! npx snyk code test --sarif-file-output=/home/runner/report.json ./
+          npx snyk code test --sarif-file-output=/home/runner/report.json 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           shell: bash -l {0}
