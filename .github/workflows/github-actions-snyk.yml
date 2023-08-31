@@ -6,10 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/maven-3-jdk-20@master
-      - run:
-          # Run a SAST scan using a supprted tool, Snyk as an example
-          npx snyk code test --sarif-file-output=/home/runner/report.json 
+        uses: snyk/actions/maven-3-jdk-20@master 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           shell: bash -l {0}
