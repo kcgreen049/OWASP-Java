@@ -7,5 +7,16 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven-3-jdk-20@master
+      - run:
+          # Run a SAST scan using a supprted tool, Snyk as an example
+          npx snyk auth ${{ secrets.SNYK_TOKEN }}
+          ! npx snyk code test --sarif-file-output=/home/runner/report.json ./
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          shell: bash -l {0}
+      - name: Mobb action step
+        uses: mobb-dev/action@v1
+        with:
+          report-file: "/home/runner/report.json"
+          api-key: ${{ secrets.MOBB_API_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
