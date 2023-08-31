@@ -11,11 +11,11 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif
+          args: --sarif-file-output=/home/runner/snyk.sarif
           shell: bash -l {0}
       - name: Mobb action step
         uses: mobb-dev/action@v1
         with:
-          report-file: "/home/runner/report.json"
+          report-file: "/home/runner/snyk.sarif"
           api-key: ${{ secrets.MOBB_API_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
