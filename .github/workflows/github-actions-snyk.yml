@@ -1,21 +1,20 @@
-name: Example workflow for Maven using Snyk
+name: Snyk check on push
 on: push
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
+      - name: Snyk vulnerabilities scan
         uses: snyk/actions/maven-3-jdk-20@master 
-        continue-on-error: true # To make sure that SARIF upload gets called
+        continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif
-          shell: bash -l {0}
+          args: --sarif-file-output=snyk_scan_output.sarif
       - name: Mobb action step
         uses: mobb-dev/action@v1
         with:
-          report-file: "snyk.sarif"
+          report-file: "snyk_scan_output.sarif"
           api-key: ${{ secrets.MOBB_API_TOKEN }}
           github-token: ${{ secrets.MY_TOKEN }}
