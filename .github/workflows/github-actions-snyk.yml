@@ -7,8 +7,11 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven-3-jdk-20@master 
+        continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
           shell: bash -l {0}
       - name: Mobb action step
         uses: mobb-dev/action@v1
