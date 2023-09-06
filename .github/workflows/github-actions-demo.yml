@@ -20,7 +20,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      
+      - run: npm init -y
+      - run: npm install snyk -g
+      - run: snyk auth 4a555199-fbc7-4b3f-b3a2-679ae75f44d4
+      - run: snyk test https://github.com/kcgreen049/OWASP-Java
       - run: npx mobbdev scan -r https://github.com/kcgreen049/OWASP-Java
       
       - uses: JS-DevTools/npm-publish@v2
