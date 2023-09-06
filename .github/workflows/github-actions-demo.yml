@@ -26,7 +26,7 @@ jobs:
       - run: snyk auth 44d3223d-208c-4696-bf38-e4bd11641f0f
       - run: snyk test https://github.com/kcgreen049/OWASP-Java --json-file-output=vuln.json
         continue-on-error: true 
-      - run: npx mobbdev scan -y -r https://github.com/kcgreen049/OWASP-Java
+      - run: npx mobbdev scan -s snyk -r https://github.com/kcgreen049/OWASP-Java
       
       - uses: JS-DevTools/npm-publish@v2
         with:
