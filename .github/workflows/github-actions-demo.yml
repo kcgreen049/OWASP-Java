@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - run: npm update
+      - run: npm install
       - run: npm install snyk -g
       
       - uses: JS-DevTools/npm-publish@v2
