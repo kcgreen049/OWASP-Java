@@ -23,7 +23,7 @@ jobs:
       - run: npm init -y
       - run: npm install snyk -g
       - run: snyk auth 44d3223d-208c-4696-bf38-e4bd11641f0f
-      - run: snyk test https://github.com/kcgreen049/OWASP-Java
+      - run: snyk test https://github.com/kcgreen049/OWASP-Java --json-file-output=vuln.json
       - run: npx mobbdev scan -r https://github.com/kcgreen049/OWASP-Java
       
       - uses: JS-DevTools/npm-publish@v2
